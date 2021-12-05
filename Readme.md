@@ -83,11 +83,6 @@ $ npm install
 $ npm run start
 ```
 
-### 1.4 Installing with Docker
-```
-See Section `3.2 Building with docker` below.
-```
-#
 ># 2. Tests in the system
 
 The following tests are included in the system
@@ -104,65 +99,22 @@ The following tests are included in the system
     3. Helper
     files are unit tested to give cover all the methods and edge cases.
 
-To run the same, use the following command
-```
-$ npm run test
-```
-Sample output :
-```
-Test Suites: 5 passed, 5 total
-Tests:       22 passed, 22 total
-Snapshots:   0 total
-Time:        3.052s
-Ran all test suites.
-```
+
 ### 2.2 - Testing code coverage
-- We use the `collectCoverage` option of Jest to invoke the test coverage in the project
+- To be Updated
 
-The get test coverage, run the following command
-```
-$ npm run test:cover
-```
-
-sample output of the above command is as follows
-
-
-![Test Coverage](./docs/test_coverage.png)
 
 ### 2.3 - API contract testing
-- We use newman with the postman collection JSON to test the API contract testing
-- This helps in verifying if there are any changes in the API usage or calling , helping us to
-identify how the APIs are called by other services.
-
-The get test coverage, run the following command
-```
-$ npm run test:contract
-```
-The sample output of the above command is as follows
-
-![API contract testing using newman](./docs/newman_result.png)
+- To be Updated
 
 ### 2.4 - Lint tests:
-- `eslint` is the tool for identifying and reporting on patterns found in ECMAScript/JavaScript code.
-
-The following lint commands are available in the system
-```
-$ npm run lint:check                // Checks the system for lint issues
-$ npm run lint:fix                  // Fixes the lint issues
-```
-
+- To be Updated
 
 ## 2.5 - PreHook Tests
-- Currently `eslint` test runs before any commit.
-- This helps in clearing out any formatting errors and enforces code quality
-```
-$ npm run pretest                   // is being run before a commit
-```
-#
-
+- To be Updated
 
 ># 3. CI / CD Strategies
-### 3.1 - Jenkinsfile
+### 3.1 - Gitlab
 - The project has a sample jenkins configuration file which could include the following actions:
     1. Obtaining the latest code from the source control
     2. Pushing packages to artifactory
@@ -172,32 +124,14 @@ $ npm run pretest                   // is being run before a commit
     6. Building the docker image to push to image repository
     7. Pushing the docker image to Open shift or any server
 
-### 3.2 - Building with Docker
-- The project is bootstrapped to run as a docker container.
-- The following command starts the container and the app is available at `http://127.0.0.1:8080`
-```
-$ docker-compose up -d
-```
-
-- The docker container spins up the swagger UI in the following url `http://127.0.0.1:8080/api-docs`.
-- The swagger UI also presents another alternative to test the application.
- The screenshot attached.
-
-![Swagger UI](./docs/swagger_ui.png)
-
-># 4. Logging
-### Winston
-- `winston` is added to the project
-
-The sample log has been implemented in `bookingService.js`
-```
- info: {"car_id":1,"total_time":3} {"meta":{"service":"booking-service"},"service":"taxi-service"}
-```
 
 
 ># 5. Enhancements:
 ### Automatic Swagger Generator
 - This will help in uniform development of the APIs
+
+### Converting Code to React Redux format
+- This will help in more vast and data handling
 
 ### Global error handler
 - This will help in bubbling any error in the application to be handled by a common method
@@ -224,7 +158,7 @@ The sample log has been implemented in `bookingService.js`
 
 
 ## Authors
-* **Thayub J**  - [Github](https://github.com/thayub)
+* **Gururajan**  - [Github](https://github.com/guru2088)
 
 ## License
 This project is licensed under the MIT License.
