@@ -1,0 +1,278 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Hello World App
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths
+basePath: /
+#
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /hello:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: hello_world
+    get:
+      description: Returns 'Hello' to the caller
+      # used as the method name of the controller
+      operationId: hello
+      parameters:
+        - name: name
+          in: query
+          description: The name of the person to whom to say hello
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /signup:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: user
+    post:
+      description: Returns 'Hello' to the caller
+      # used as the method name of the controller
+      operationId: signup
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: user
+          description: The user to create.
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/RegistrationResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /login:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: user
+    post:
+      description: Returns 'Hello' to the caller
+      # used as the method name of the controller
+      operationId: login
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: user
+          description: The user to validate.
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/RegistrationResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
+  /product:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: product
+    post:
+      description: Post subscription for the product for an user
+      # used as the method name of the controller
+      operationId: subscribe
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: product
+          description: The user to validate.
+          schema:
+            $ref: '#/definitions/Product'
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ProductResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /subscription:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: product
+    post:
+        description: Get subscription for the product for an user
+        # used as the method name of the controller
+        operationId: getSubscription
+        consumes:
+          - application/json
+        parameters:
+          - in: body
+            name: product
+            description: To get the subscriptions
+            schema:
+              $ref: '#/definitions/Subscription'
+        responses:
+          "200":
+            description: Success
+            schema:
+              # a pointer to a definition
+              $ref: "#/definitions/HelloWorldResponse"
+          # responses may fall through to errors
+          default:
+            description: Error
+            schema:
+              $ref: "#/definitions/ErrorResponse"
+  /priceView:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: view
+    post:
+        description: Get Price View
+        # used as the method name of the controller
+        operationId: priceView
+        consumes:
+          - application/json
+        parameters:
+          - in: body
+            name: product
+            description: To get the subscriptions
+            schema:
+              $ref: '#/definitions/PriceView'
+        responses:
+          "200":
+            description: Success
+            schema:
+              # a pointer to a definition
+              $ref: "#/definitions/HelloWorldResponse"
+          # responses may fall through to errors
+          default:
+            description: Error
+            schema:
+              $ref: "#/definitions/ErrorResponse"
+  /matchView:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: view
+    post:
+        description: Get Match View
+        # used as the method name of the controller
+        operationId: matchView
+        consumes:
+          - application/json
+        parameters:
+          - in: body
+            name: product
+            description: To get the subscriptions
+            schema:
+              $ref: '#/definitions/MatchView'
+        responses:
+          "200":
+            description: Success
+            schema:
+              # a pointer to a definition
+              $ref: "#/definitions/HelloWorldResponse"
+          # responses may fall through to errors
+          default:
+            description: Error
+            schema:
+              $ref: "#/definitions/ErrorResponse"
+
+
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  User:
+    type: object
+    required:
+      - email
+      - password
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+  Product:
+    type: object
+    required:
+      - productID
+      - userID
+    properties:
+      productID:
+        type: array
+        items:
+          type: string
+      userID:
+        type: string
+  Subscription:
+    type: object
+    required:
+      - userID
+    properties:
+      userID:
+        type: string
+  PriceView:
+    type: object
+    required:
+      - productID
+    properties:
+      productID:
+        type: array
+        items:
+          type: string
+  MatchView:
+    type: object
+    required:
+      - productID
+    properties:
+      productID:
+        type: array
+        items:
+          type: string
+  HelloWorldResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  RegistrationResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  ProductResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string

@@ -1,0 +1,20 @@
+variables:
+  DOCKER_REG: "dockerepo.coe001.net"
+  VER: "v1.0.${CI_PIPELINE_IID}"
+
+stages:
+  - build
+
+package_build:
+  only:
+    - master
+  except:
+    - tags
+  stage: build
+  tags:
+    - docker-build
+  script:
+    - docker build -t app:${VER} ./
+    - docker tag app:${VER} ${DOCKER_REG}/app:${VER}
+    - docker push ${DOCKER_REG}/app:${VER}
+    - echo "Congratulation, we are here finanlly. ${VER}"
