@@ -10,7 +10,7 @@ The problem statement is defined with the following file as follows.
 - Clone this repository into the machine you want to run this application
 - Install the dependencies using NPM
 - Run the application using docker / using npm run start
-
+- Start an local mongodb endpoint for this application
 
 ### 1.1 Installing Socket
 
